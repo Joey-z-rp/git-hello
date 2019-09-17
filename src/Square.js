@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Square() {
+function Square(props) {
     return (
         <button className="square">
-            S
+            {props.value}
         </button>
     );
 }
