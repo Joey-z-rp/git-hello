@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Square from './Square';
 
 class Board extends React.Component {
@@ -8,6 +8,14 @@ class Board extends React.Component {
 			squares: Array(9).fill(null),
 			isXNext: true,
 		};
+	}
+
+	componentDidMount() {
+		console.log('I am in componentDidMount');
+	}
+
+	componentDidUpdate() {
+		console.log('I am in componentDidUpdate');
 	}
 
 	handleClick(i) {
@@ -32,6 +40,8 @@ class Board extends React.Component {
 	}
 
 	render() {
+		console.log('I am in render');
+
 		const winner = calculateWinner(this.state.squares);
 		const status = winner
 			? `Winner: ${winner}`
@@ -40,21 +50,25 @@ class Board extends React.Component {
 		return (
 			<div>
 				<div className="status">{status}</div>
-				<div className="board-row">
-					{this.renderSquare(0)}
-					{this.renderSquare(1)}
-					{this.renderSquare(2)}
-				</div>
-				<div className="board-row">
-					{this.renderSquare(3)}
-					{this.renderSquare(4)}
-					{this.renderSquare(5)}
-				</div>
-				<div className="board-row">
-					{this.renderSquare(6)}
-					{this.renderSquare(7)}
-					{this.renderSquare(8)}
-				</div>
+				{!winner && (
+					<Fragment>
+						<div className="board-row">
+							{this.renderSquare(0)}
+							{this.renderSquare(1)}
+							{this.renderSquare(2)}
+						</div>
+						<div className="board-row">
+							{this.renderSquare(3)}
+							{this.renderSquare(4)}
+							{this.renderSquare(5)}
+						</div>
+						<div className="board-row">
+							{this.renderSquare(6)}
+							{this.renderSquare(7)}
+							{this.renderSquare(8)}
+						</div>
+					</Fragment>
+				)}
 			</div>
 		);
 	}
