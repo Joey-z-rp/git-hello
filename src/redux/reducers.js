@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 const initialState = {
     squares: Array(9).fill(null),
     isXNext: true,
@@ -16,3 +18,7 @@ const board = (state = initialState, action) => {
         return state;
     }
 }
+
+export default combineReducers({
+    board,
+})
